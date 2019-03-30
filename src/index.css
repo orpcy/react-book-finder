@@ -12,3 +12,34 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.App{
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.search{
+  width: 100%;
+  padding: 15px;
+}
+
+.searchForm{
+  max-width: 750px;
+  width: 100%;
+}
+
+.navbar{
+  width: 100%;
+  padding: 15px 10px;
+  border: 3px solid black;
+  margin: 30px 0;
+}
+
+#searchInput{
+  margin-bottom: 5px;
+}
+
+.searchBtn{
+  float: right;
+}

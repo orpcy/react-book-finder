@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { desc, author } from "../utils";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 class Search extends Component {
   state = {
@@ -24,56 +27,90 @@ class Search extends Component {
   };
 
   handleSave = (title, authors, description, image, link) => {
-    console.log(title);
-    console.log(authors);
-    console.log(description);
-    console.log(image);
-    console.log(link);
+    fetch("/books", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify({
+        title,
+        authors,
+        description,
+        image,
+        link
+      })
+    })
+      .then(res => res.json())
+      .then(data => toast.info("Book saved successfully"))
+      .catch(err => console.log("error occured", err));
   };
 
   render() {
+    const { books } = this.state;
+
     return (
-      <div className="search">
-        <h2>Search</h2>
-        <nav className="navbar navbar-light bg-light">
-          <form onSubmit={this.handleSubmit} className="searchForm">
-            <input
-              onChange={this.handleChange}
-              id="searchInput"
-              className="form-control mr-sm-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button
-              className="btn btn-outline-success my-2 my-sm-0 searchBtn"
-              type="submit"
-            >
-              Search
-            </button>
-          </form>
-        </nav>
-        <ul>
-          {this.state.books.map((b, i) => {
-            const {title, description, authors} = b.volumeInfo;
+      <div className="main">
+        <section className="top">
+          <h2>Search Book</h2>
+          <div className="navbar navbar-light bg-light custom-search">
+            <form onSubmit={this.handleSubmit} className="searchForm">
+              <input
+                onChange={this.handleChange}
+                id="searchInput"
+                className="form-control mr-sm-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button
+                className="btn btn-outline-success my-2 my-sm-0 searchBtn"
+                type="submit"
+              >
+                Search
+              </button>
+            </form>
+          </div>
+        </section>
+        <div className="books-wrap">
+          {books.map((b, i) => {
+            const { title, description, authors, infoLink } = b.volumeInfo;
             const { thumbnail } = b.volumeInfo.imageLinks;
-            const { infoLink } = b.volumeInfo;
 
             return (
-              <li key={i}>
-                <h4>{title}</h4>
-                <p>{description}</p>
-                <button
-                  onClick={() => this.handleSave(title, authors, description, thumbnail, infoLink)}
-                  className="btn btn-primary"
-                >
-                  save
-                </button>
-                <button className="btn btn-success p-0"><a href={infoLink} target="_blank">View</a></button>
-              </li>
+              <div key={i} className="book-item bg-dark">
+                <h3>{title}</h3>
+                <div className="book-content">
+                  <div className="img-wrap">
+                    <img src={thumbnail} alt={title} />
+                  </div>
+                  <div className="right-content">
+                    <h5>{author(authors)}</h5>
+                    <p>{desc(description)}</p>
+                    <a href={infoLink} target="_blank">
+                      Read more...
+                    </a>
+                  </div>
+                </div>
+                <div className="btn-wrap">
+                  <button
+                    onClick={() =>
+                      this.handleSave(
+                        title,
+                        authors,
+                        description,
+                        thumbnail,
+                        infoLink
+                      )
+                    }
+                    className="btn btn-primary"
+                  >
+                    save
+                  </button>
+                </div>
+              </div>
             );
           })}
-        </ul>
+        </div>
       </div>
     );
   }

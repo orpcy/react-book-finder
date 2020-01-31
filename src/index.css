@@ -14,12 +14,18 @@ code {
 }
 
 .App{
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.top{
   max-width: 800px;
   width: 100%;
   margin: 0 auto;
 }
 
-.search{
+.main{
   width: 100%;
   padding: 15px;
 }
@@ -29,10 +35,11 @@ code {
   width: 100%;
 }
 
-.navbar{
+.custom-search{
   width: 100%;
   padding: 15px 10px;
   border: 3px solid black;
+  border-radius: 5px;
   margin: 30px 0;
 }
 
@@ -42,4 +49,51 @@ code {
 
 .searchBtn{
   float: right;
+}
+
+.books-wrap{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.books-wrap .book-item{
+  width: 47%;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  padding: 10px 20px;
+  color: white;
+  border-radius: 8px;
+}
+
+.book-item .book-content{
+  display: flex;
+}
+
+.img-wrap{
+  max-width: 135px;
+  margin-right: 3%;
+}
+
+.right-content{
+  flex: 1;
+}
+
+.right-content p{
+  height: 150px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.btn-wrap{
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media screen and (max-width: 950px){
+  .books-wrap .book-item{
+    max-width: 700px;
+    width: 100%;
+    margin: 25px auto;
+  }
 }

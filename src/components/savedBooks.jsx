@@ -7,7 +7,7 @@ class SavedBooks extends Component {
   };
 
   componentDidMount() {
-    fetch("http://localhost:5000/books")
+    fetch("/books")
       .then(res => res.json())
       .then(savedBooks => {
         this.setState({ savedBooks });

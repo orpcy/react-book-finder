@@ -46,7 +46,7 @@ class SavedBooks extends Component {
                 <h4>{title}</h4>
                 <div className="book-content">
                   <div className="img-wrap">
-                    <img src={image} alt="" />
+                    <img src={image} alt="book description" />
                   </div>
                   <div className="right-content">
                     <h6>{authors.join(", ")}</h6>

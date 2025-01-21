@@ -11,7 +11,7 @@ module.exports.addBook = (req, res) => {
   });
 };
 
-//get all book
+//fetch all book
 module.exports.getAllBooks = (req, res) => {
   Books.find((err, web) => {
     if (err) {

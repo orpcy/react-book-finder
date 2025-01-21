@@ -3,7 +3,7 @@ const { addBook, getAllBooks, deleteBook } = require("../controllers/booksContro
 
 const app = express();
 
-//post book route
+//post books route
 app.post("/books", addBook);
 
 //get books route

@@ -16,7 +16,7 @@ Click on a book to see more details about it.
 
 **Technologies Used**
 
-React: Frontend library used to build the user interface.
+React: Front-end library used to build the user interface.
 Axios: Promise-based HTTP client for making API requests.
 Google Books API: Provides the data for the books.
 React-Router: Handles navigation within the application.
